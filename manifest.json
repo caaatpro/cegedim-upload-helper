@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+
+    "name": "Cegedim upload helper",
+    "description": "",
+    "version": "1.0",
+
+    "icons": {
+        "16": "plugin/icon16.png",
+        "48": "plugin/icon48.png",
+        "128": "plugin/icon128.png"
+    },
+
+    "browser_action": {
+        "default_icon": "plugin/icon128.png",
+        "default_popup": "plugin/popup.html"
+    },
+    "content_scripts": [{
+        "matches": ["https://sanofi-itc-mi.emea.crm.cegedim.com/*"],
+        "js": ["plugin/content.js"],
+        "run_at": "document_start"
+    }],
+    "permissions": [
+        "storage"
+    ]
+}
