@@ -10,6 +10,12 @@ function injected_main() {
   var doc = document.getElementById('modal-dialog-iframe').contentDocument;
   var code = '';
 
+  // update slide
+  doc.getElementById('_uploadCtlSingle_Html5InputFile').addEventListener('change', function() {
+    doc.getElementById('_uploadCtlSingle_UploadOrCancelButton').click();
+  });
+
+  // new slide
   doc.getElementById('_uploadCtl_Html5InputFile').addEventListener('change', function() {
     var name = doc.querySelector('.filename').innerText.replace('.zip', '');
     code = name.split('_')[0];

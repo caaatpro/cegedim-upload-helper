@@ -3,7 +3,7 @@
 
     "name": "Cegedim upload helper",
     "description": "",
-    "version": "1.0",
+    "version": "1.1",
 
     "icons": {
         "16": "plugin/icon16.png",
