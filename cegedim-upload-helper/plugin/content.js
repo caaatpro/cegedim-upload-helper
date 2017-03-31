@@ -11,30 +11,34 @@ function injected_main() {
   var code = '';
 
   // update slide
-  doc.getElementById('_uploadCtlSingle_Html5InputFile').addEventListener('change', function() {
-    doc.getElementById('_uploadCtlSingle_UploadOrCancelButton').click();
-  });
+  if (doc.getElementById('_uploadCtlSingle_Html5InputFile')) {
+    doc.getElementById('_uploadCtlSingle_Html5InputFile').addEventListener('change', function() {
+      doc.getElementById('_uploadCtlSingle_UploadOrCancelButton').click();
+    });
+  }
 
   // new slide
-  doc.getElementById('_uploadCtl_Html5InputFile').addEventListener('change', function() {
-    var name = doc.querySelector('.filename').innerText.replace('.zip', '');
-    code = name.split('_')[0];
-    name.replace(code + '_', '') + ' ' + code;
-    doc.getElementById('_namePrefix').value = name.replace(code + '_', '') + ' ' + code;
-    doc.getElementById('_uploadCtl_UploadOrCancelButton').click();
-    if (localStorage['code'] == code) {
-      code = localStorage['code'];
-    } else {
-      localStorage['code'] = '';
-    }
+  if (doc.getElementById('_uploadCtl_Html5InputFile')) {
+    doc.getElementById('_uploadCtl_Html5InputFile').addEventListener('change', function() {
+      var name = doc.querySelector('.filename').innerText.replace('.zip', '');
+      code = name.split('_')[0];
+      name.replace(code + '_', '') + ' ' + code;
+      doc.getElementById('_namePrefix').value = name.replace(code + '_', '') + ' ' + code;
+      doc.getElementById('_uploadCtl_UploadOrCancelButton').click();
+      if (localStorage['code'] == code) {
+        code = localStorage['code'];
+      } else {
+        localStorage['code'] = '';
+      }
 
-    if (localStorage['productId'] && localStorage['code'] == code) {
-      doc.getElementById("_productId").value = localStorage['productId'];
-      doc.getElementById("ctl18").value = localStorage['productName'];
-    }
+      if (localStorage['productId'] && localStorage['code'] == code) {
+        doc.getElementById("_productId").value = localStorage['productId'];
+        doc.getElementById("ctl18").value = localStorage['productName'];
+      }
 
-    saveToStorage();
-  });
+      saveToStorage();
+    });
+  }
 
   doc.getElementById("_productId").addEventListener('change', function() {
     localStorage['code'] = code;
