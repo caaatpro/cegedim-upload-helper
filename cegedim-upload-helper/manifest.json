@@ -16,7 +16,7 @@
         "default_popup": "plugin/popup.html"
     },
     "content_scripts": [{
-        "matches": ["https://sanofi-itc-mi.emea.crm.cegedim.com/*"],
+        "matches": ["https://*.cegedim.com/*"],
         "js": ["plugin/content.js"],
         "run_at": "document_start"
     }],

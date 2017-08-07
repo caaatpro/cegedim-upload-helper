@@ -1,6 +1,7 @@
-document.addEventListener("DOMNodeInserted", function() {
+document.addEventListener('DOMNodeInserted', function() {
   if (document.getElementById('modal-dialog-iframe')) {
     document.getElementById('modal-dialog-iframe').onload = function() {
+      alert('Its work');
       injected_main();
     };
   }
@@ -32,27 +33,29 @@ function injected_main() {
       }
 
       if (localStorage['productId'] && localStorage['code'] == code) {
-        doc.getElementById("_productId").value = localStorage['productId'];
-        doc.getElementById("ctl18").value = localStorage['productName'];
+        doc.getElementById('_productId').value = localStorage['productId'];
+        doc.getElementById('ctl18').value = localStorage['productName'];
       }
 
       saveToStorage();
     });
   }
 
-  doc.getElementById("_productId").addEventListener('change', function() {
-    localStorage['code'] = code;
-    localStorage['productId'] = this.value;
-    localStorage['productName'] = doc.querySelector('tr[drag_info="' + localStorage['productId'] + '"] nobr').innerText;
+  if (doc.getElementById('_productId')) {
+      doc.getElementById('_productId').addEventListener('change', function() {
+        localStorage['code'] = code;
+        localStorage['productId'] = this.value;
+        localStorage['productName'] = doc.querySelector('tr[drag_info="' + localStorage['productId'] + '"] nobr').innerText;
 
-    saveToStorage();
-  });
-}
+        saveToStorage();
+      });
+    }
+  }
 
-function saveToStorage() {
-  chrome.storage.sync.set({
-    code: localStorage['code'],
-    productName: localStorage['productName']
-  });
+  function saveToStorage() {
+    chrome.storage.sync.set({
+      code: localStorage['code'],
+      productName: localStorage['productName']
+    });
 
-}
+  }
